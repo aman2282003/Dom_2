@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="display"> 0</h1>
+    <div class="main">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button><br>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button><br>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button><br>
+        <button>0</button>
+    </div>
+    <div class="operator">
+        <button>+</button>
+        <button>-</button>
+        <button>*</button><br>
+        <button>/</button>
+    </div>
+    <button id = "equal">=</button>
+</body>
+</html>
+<script>
+    let allbutton =document.querySelectorAll(".main>button")
+    let operatorbutton =document.querySelectorAll(".operator> button")
+    let head = document.getElementById("display")
+    let equalto =document.getElementById("equal")
+
+    let first = ""
+    let firstnbr = true
+    let scnnbr = ""
+    let operator = ""
+    for(let i=0;i<allbutton.length;i++){
+        allbutton[i].addEventListener('click',function()
+
+            {
+                if (firstnbr === true) {
+                first +=  allbutton[i].innerText;
+                head.innerText = first;
+            }
+            else{
+                scnnbr +=  allbutton[i].innerText;
+                head.innerText = scnnbr;
+            }
+        })
+
+    }
+    equalto.addEventListener('click',function(){
+                head.innerText = scnnbr
+        })
+
+
+    for(let i=0;i<operatorbutton.length;i++){
+        operatorbutton[i].addEventListener('click',function()
+            {
+                firstnbr = false
+                head.innerText = operatorbutton[i].innerText
+            })
+
+        }
+
+        function calculate(firstnbr,scnnbr,operator){
+            switch(operator)
+            {
+                case "+":
+                    return number(firstnbr)+number(scnnbr)
+                    case "-":
+                    return number(firstnbr)-number(scnnbr)
+                    case "/":
+                    return number(firstnbr)/number(scnnbr)
+                    case "*":
+                    return number(firstnbr)*number(scnnbr)
+            }
+
+        }
+        
+</script>
