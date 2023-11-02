@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .main {
+            width: 50%;
+            margin: auto;
+            background-color: teal;
+        }
+
+        #minMax {
+            margin: auto;
+            width: 46%;
+            display: flex;
+            justify-content: space-between;
+        }
+       #min+p, #max+p{
+        text-align: center;
+       }
+
+        #min {
+            width: 80px;
+            height: 50px;
+            border: 1px solid black;
+            background-color: red;
+        }
+
+        #max {
+            width: 80px;
+            height: 50px;
+            border: 1px solid black;
+            background-color: green;
+        }
+
+        .hath {
+            width: 25%;
+            border: 1px solid black;
+            background-color: grey;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        .grid {
+            width: 35%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: auto;
+
+
+        }
+
+        .shell {
+            border: 2px solid black;
+            height: 75px;
+            width: 75px;
+            margin: auto;
+            line-height: 10vh;
+            background-color: #FF6600;
+        }
+        .grid + .shell {
+            background-color: #850067;
+            color: white;
+        }
+        .grid + .shell + .shell {
+            margin-top: 5px;
+            height: 10vh;
+            width: 30%;
+            background-color: black;
+            color: white;
+        }
+        .green{
+            background-color: #627F00;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="main">
+        <div id="minMax">
+            <div>
+                <div id="min"></div>
+                <p>MIN</p>
+            </div>
+            <div>
+                <div id="max"></div>
+                <p>MAX</p>
+            </div>
+
+        </div>
+        <p>SCORE</p>
+        <div class="hath">
+            <h1 id ="hath">#</h1>
+        </div>
+        <div class="grid">
+            <div class="shell green">1</div>
+            <div class="shell">2</div>
+            <div class="shell green">3</div>
+            <div class="shell">4</div>
+            <div class="shell">5</div>
+            <div class="shell">6</div>
+            <div class="shell green">7</div>
+            <div class="shell">8</div>
+            <div class="shell green">9</div>
+        </div>
+        <div class="shell">0</div>
+        <div class="shell" onclick = "ans()">ENTER</div>
+    </div>
+</body>
+
+</html>
+
+
+<script>
+    let score = document.getElementById("hath")
+    function ans(){
+    
+}
+</script>
