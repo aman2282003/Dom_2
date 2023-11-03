@@ -1,131 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MIN & MAX LEADERBOARD (DOM)</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             text-align: center;
         }
 
-        .main {
+        .container {
             width: 50%;
             margin: auto;
-            background-color: teal;
+            margin-top: 30px;
         }
 
-        #minMax {
+        #scores {
             margin: auto;
             width: 46%;
             display: flex;
             justify-content: space-between;
+            margin-bottom: -20px;
         }
-       #min+p, #max+p{
-        text-align: center;
-       }
 
-        #min {
+        #min + p, #max + p {
+            text-align: center;
+        }
+
+        #minValue {
             width: 80px;
             height: 50px;
             border: 1px solid black;
             background-color: red;
         }
 
-        #max {
+        #maxValue {
             width: 80px;
             height: 50px;
             border: 1px solid black;
             background-color: green;
         }
 
-        .hath {
+        #display {
             width: 25%;
+            height: 10vh;
             border: 1px solid black;
             background-color: grey;
             margin: auto;
-            margin-top: 10px;
+            margin-top: 30px;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            
         }
 
-        .grid {
+        #scores + p {
+            margin-top: 20px;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+        .gridContainer {
             width: 35%;
+            height: 40vh;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin: auto;
-
-
         }
 
-        .shell {
+        .cell {
             border: 2px solid black;
-            height: 75px;
-            width: 75px;
+            height: 10vh;
+            width: 9.6vh;
             margin: auto;
             line-height: 10vh;
             background-color: #FF6600;
         }
-        .grid + .shell {
+
+        .gridContainer + .cell {
+            margin-top: 5px;
             background-color: #850067;
             color: white;
         }
-        .grid + .shell + .shell {
-            margin-top: 5px;
+
+        #submit {
+            display: flex;
+            margin: auto;
+            margin-top: 50px;
             height: 10vh;
             width: 30%;
             background-color: black;
             color: white;
+            display: flex;
+            justify-content: center;
         }
-        .green{
+
+        .green {
             background-color: #627F00;
         }
-    </style>
 
+        .zero {
+            grid-column-start: 2;
+            grid-column-end: 3;
+        }
+
+        #minValue, #maxValue {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            border: none;
+            background: none;
+            font-size: 23px;
+            width: 100%;
+        }
+
+        #submit > button {
+            color: white;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="main">
-        <div id="minMax">
+    <div class="container">
+        <div id="scores">
             <div>
-                <div id="min"></div>
+                <div id="minValue"><h2>43</h2></div>
                 <p>MIN</p>
             </div>
             <div>
-                <div id="max"></div>
+                <div id="maxValue"><h2>2019</h2></div>
                 <p>MAX</p>
             </div>
-
         </div>
         <p>SCORE</p>
-        <div class="hath">
-            <h1 id ="hath">#</h1>
+        <div id="display">
+            <h1 id="score">#</h1>
         </div>
-        <div class="grid">
-            <div class="shell green">1</div>
-            <div class="shell">2</div>
-            <div class="shell green">3</div>
-            <div class="shell">4</div>
-            <div class="shell">5</div>
-            <div class="shell">6</div>
-            <div class="shell green">7</div>
-            <div class="shell">8</div>
-            <div class="shell green">9</div>
+        <div class="gridContainer">
+            <div class="cell green"><button>1</button></div>
+            <div class="cell"><button>2</button></div>
+            <div class="cell green"><button>3</button></div>
+            <div class="cell"><button>4</button></div>
+            <div class="cell"><button>5</button></div>
+            <div class="cell"><button>6</button></div>
+            <div class="cell green"><button>7</button></div>
+            <div class="cell"><button>8</button></div>
+            <div class="cell green"><button>9</button></div>
+            <div class="cell zero"><button>0</button></div>
         </div>
-        <div class="shell">0</div>
-        <div class="shell" onclick = "ans()">ENTER</div>
+        <div id="submit"><button>ENTER</button></div>
     </div>
 </body>
 
-</html>
-
-
 <script>
-    let score = document.getElementById("hath")
-    function ans(){
-    
-}
+    let minVal = document.querySelector("#minValue");
+    let maxVal = document.querySelector("#maxValue");
+    let scoreDisplay = document.querySelectorAll("#score");
+    let submitButton = document.getElementById("submit");
+    let keypadButtons = document.querySelectorAll(".cell>button");
+    let isInputting = true;
+    let inputValue = "";
+
+    for (let i = 0; i < keypadButtons.length; i++) {
+        keypadButtons[i].addEventListener('click', function () {
+            if (isInputting) {
+                inputValue += keypadButtons[i].innerText;
+                scoreDisplay[0].innerText = inputValue;
+            }
+        });
+    }
+
+    submitButton.addEventListener('click', function () {
+        if (inputValue) {
+            if (inputValue < Number(minVal.innerText)) {
+                minVal.innerText = inputValue;
+                isInputting = true;
+                inputValue = "";
+            }
+
+            if (inputValue > Number(maxVal.innerText)) {
+                maxVal.innerText = inputValue;
+                isInputting = true;
+                inputValue = "";
+            }
+        }
+    });
 </script>
+</html>
